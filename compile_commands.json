@@ -1,0 +1,27 @@
+[
+  {
+    "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
+    "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c src/crc16.c -o build/crc16.o",
+    "file": "src/crc16.c"
+  },
+  {
+    "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
+    "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c src/protocol.c -o build/protocol.o",
+    "file": "src/protocol.c"
+  },
+  {
+    "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
+    "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c src/parser.c -o build/parser.o",
+    "file": "src/parser.c"
+  },
+  {
+    "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
+    "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c tests/test_protocol.c -o build/test_protocol.o",
+    "file": "tests/test_protocol.c"
+  },
+  {
+    "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
+    "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c tests/test_streaming.c -o build/test_streaming.o",
+    "file": "tests/test_streaming.c"
+  }
+]
