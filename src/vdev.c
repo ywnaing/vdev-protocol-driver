@@ -136,3 +136,40 @@ bool vdev_process_frame(VirtualDevice *dev, const Frame *req, Frame *resp) {
     return true;
   }
 }
+
+bool vdev_tick(VirtualDevice *dev, Frame *telemetry_frame) {
+  if (!dev || !telemetry_frame)
+    return false;
+
+  dev->tick_count++;
+
+  dev->registers[REG_TEMP] = 250 + (dev->tick_count % 5);
+
+  dev->registers[REG_ACCEL_X] = (dev->tick_count % 3) - 1;
+  dev->registers[REG_ACCEL_Y] = (dev->tick_count % 2);
+  dev->registers[REG_ACCEL_Z] = 1000;
+
+  if (dev->registers[REG_STATUS] & DEV_STATUS_STREAMING) {
+    telemetry_frame->header.sync = PROTO_SYNC_WORD;
+    telemetry_frame->header.seq = dev->tx_seq++;
+    telemetry_frame->header.opcode = OP_TELEMETRY_DATA;
+
+    uint16_t reg_status = dev->registers[REG_TEMP];
+    uint16_t accel_x = dev->registers[REG_ACCEL_X];
+    uint16_t accel_y = dev->registers[REG_ACCEL_Y];
+    uint16_t accel_z = dev->registers[REG_ACCEL_Z];
+    telemetry_frame->payload[0] = (reg_status >> 8) & 0xFF;
+    telemetry_frame->payload[1] = reg_status & 0xFF;
+    telemetry_frame->payload[2] = (accel_x >> 8) & 0xFF;
+    telemetry_frame->payload[3] = accel_x & 0xFF;
+    telemetry_frame->payload[4] = (accel_y >> 8) & 0xFF;
+    telemetry_frame->payload[5] = accel_y & 0xFF;
+    telemetry_frame->payload[6] = (accel_z >> 8) & 0xFF;
+    telemetry_frame->payload[7] = accel_z & 0xFF;
+    telemetry_frame->header.length = 8;
+
+    return true;
+  }
+
+  return false;
+}
