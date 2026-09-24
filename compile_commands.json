@@ -26,6 +26,11 @@
   },
   {
     "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
+    "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c src/main.c -o build/main.o",
+    "file": "src/main.c"
+  },
+  {
+    "directory": "/Users/yewintnaing/Documents/Learning_and_Practice/csapp/09-virtual-device-driver",
     "command": "gcc -Wall -Wextra -Werror -pedantic -std=c11 -fsanitize=address,undefined -g -Iinclude -c tests/test_protocol.c -o build/test_protocol.o",
     "file": "tests/test_protocol.c"
   },
